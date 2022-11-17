@@ -1,7 +1,7 @@
 DB_USER = "root"
-DB_PASS = "root"
+DB_PASS = "1012"
 DB_IP = "localhost"
-DB_PORT = "3306"
+DB_PORT = "3336"
 DB_DATABASE = "horta_banco"
 
 def getConnection():
