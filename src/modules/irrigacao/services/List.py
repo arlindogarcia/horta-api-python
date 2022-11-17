@@ -10,7 +10,5 @@ def execute(irrigacao, db):
     retorno = hortas.query.filter_by(id=item.horta_id).first()
     item.horta = retorno.to_json()
     item.data_irrigacao = converteDataToISO(item.data_irrigacao)
-
   resultado = [itens.to_json() for itens in objetos]
-  print(resultado)
   return gera_response(200,'irrigacao',resultado)
