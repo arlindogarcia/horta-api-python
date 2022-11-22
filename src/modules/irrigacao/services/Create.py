@@ -3,7 +3,7 @@ from src.shared.methods.utils import converteDataToISO
 
 def execute(irrigacao, db, body):
   try:
-    cadastro = irrigacao(data_irrigacao = body["data_irrigacao"], horta_id = body["horta_id"])
+    cadastro = irrigacao(data_irrigacao = body["data_irrigacao"], horta_id = body["horta_id"], valor_umidade = body["valor_umidade"])
     db.session.add(cadastro)
     db.session.commit()
     cadastro.data_irrigacao = converteDataToISO(cadastro.data_irrigacao)
