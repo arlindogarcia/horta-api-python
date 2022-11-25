@@ -6,7 +6,6 @@ def execute(irrigacao, db, id, body):
   try:
     objeto.data_irrigacao = body["data_irrigacao"]
     objeto.horta_id = body["horta_id"]
-    objeto.valor_umidade = body["valor_umidade"]
     db.session.add(objeto)
     db.session.commit()
     objeto.data_irrigacao = converteDataToISO(objeto.data_irrigacao)
