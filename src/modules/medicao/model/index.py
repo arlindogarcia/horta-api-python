@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, ForeignKey, Date
 
 def getModel(db):
   class medicao(db.Model):
@@ -6,7 +6,7 @@ def getModel(db):
 
     id = Column(Integer, primary_key = True)
     valor_humidade = Column(Integer)
-    data_leitura = Column(DateTime)
+    data_leitura = Column(Date)
     horta_id = Column(Integer, ForeignKey("hortas.id"))
     horta = ""
     def to_json(self):
