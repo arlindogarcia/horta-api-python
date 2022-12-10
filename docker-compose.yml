@@ -1,0 +1,41 @@
+# For more information: https://laravel.com/docs/sail
+version: '3.7'
+services:
+    sql:
+        build:
+            context: ./
+            dockerfile: Dockerfile_sql
+        image: hortaapipython-sql
+        container_name: hortaapipython-sql
+        restart: unless-stopped
+        stdin_open: true
+        tty: true
+        working_dir: /var/www/html/
+        ports:
+            - 3306:3306
+        networks:
+            - aplicacao-app
+        healthcheck:
+          test: [ "CMD-SHELL", 'mysql -h 127.0.0.1 -u root -proot -D horta_banco --silent -e "show databases;"' ]
+    api:
+        build:
+            context: ./
+            dockerfile: Dockerfile_api
+        image: hortaapipython-api
+        container_name: hortaapipython-api
+        restart: unless-stopped
+        stdin_open: true
+        tty: true
+        working_dir: /var/www/html/
+        ports:
+            - 5000:5000
+        networks:
+            - aplicacao-api
+        depends_on:
+          sql:
+            condition: service_healthy
+networks:
+  aplicacao-app:
+    driver: bridge
+  aplicacao-api:
+    driver: bridge

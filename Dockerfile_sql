@@ -1,0 +1,6 @@
+# CRIA ESTA IMAGEM COM O NOME: hortaapipython-sql:latest
+
+FROM mysql:latest
+
+ENV MYSQL_ROOT_PASSWORD=root
+COPY ./script_sql.sql /docker-entrypoint-initdb.d/

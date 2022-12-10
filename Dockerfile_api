@@ -1,0 +1,22 @@
+# CRIA ESTA IMAGEM COM O NOME: hortaapipython-api:latest
+
+FROM python:3.10.7
+
+RUN apt-get update && apt-get install -y\
+  default-libmysqlclient-dev
+
+WORKDIR /var/www/html
+
+RUN pip install\
+  flask\
+  cors\
+  sqlalchemy\
+  flask_sqlalchemy\
+  flask_cors\
+  mysqlclient
+
+COPY . .
+
+EXPOSE 5000
+
+CMD python app.py
